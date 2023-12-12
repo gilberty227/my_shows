@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -49,12 +50,11 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+
+    //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
 
     //Test
     testImplementation ("junit:junit:4.13.2")
@@ -62,6 +62,7 @@ dependencies {
     androidTestImplementation ("androidx.test:runner:1.5.2")
     androidTestImplementation ("androidx.test:rules:1.5.0")
     androidTestImplementation ("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // Espresso dependencies
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
@@ -84,6 +85,7 @@ dependencies {
 
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("jp.wasabeef:glide-transformations:4.3.0")
 
     // Lottie Animation
     implementation ("com.airbnb.android:lottie:3.4.0")

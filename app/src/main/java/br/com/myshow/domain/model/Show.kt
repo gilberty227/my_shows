@@ -8,5 +8,6 @@ data class Show(
     var price: Int?,
     var day: String?,
     var hour: String?,
-    var location: String?
+    var location: String?,
+    var locationQuick: String?
 )

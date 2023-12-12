@@ -9,7 +9,24 @@
         android:id="@+id/navigation_home"
         android:name="br.com.myshow.presenter.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_show_details"
+            app:destination="@id/navigation_show_details"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_show_details"
+        android:name="br.com.myshow.presenter.showdetails.ShowDetailsFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_show_details" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="show"
+            app:argType="br.com.myshow.presenter.model.ShowDto" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"

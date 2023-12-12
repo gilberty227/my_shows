@@ -11,7 +11,8 @@ data class ShowResponse(
     @SerializedName("price") var price: Int?,
     @SerializedName("day") var day: String?,
     @SerializedName("hour") var hour: String?,
-    @SerializedName("location")var location: String?
+    @SerializedName("location")var location: String?,
+    @SerializedName("location_quick")var locationQuick: String?
 )
 
 fun ShowResponse.toShow() = Show(
@@ -22,5 +23,6 @@ fun ShowResponse.toShow() = Show(
     price = this.price,
     day = this.day,
     hour = this.hour,
-    location = this.location
+    location = this.location,
+    locationQuick = this.locationQuick
 )

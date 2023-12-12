@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/contentBackgroundColor"
+    tools:context=".presenter.home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/imageViewBackgroundShow"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scaleType="fitXY"
+        tools:srcCompat="@drawable/show_example"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarShowDetails"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewImageShow"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/contentBackgroundColor"
+        app:cardBackgroundColor="@color/backgroundItem"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarShowDetails">
+
+        <ImageView
+            android:id="@+id/imageViewShow"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:scaleType="fitXY"
+            tools:srcCompat="@drawable/show_example"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/viewGuideLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toTopOf="@+id/cardViewImageShow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewImageShow"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBackgroundShow"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_default_material"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewImageShow"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutBuy">
+
+        <TextView
+            android:id="@+id/textViewShowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:textColor="@color/colorTextTitleLight"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            tools:text="Paradise Sunset by Corona"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imageViewShowDate"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="@dimen/margin_default_material"
+            app:srcCompat="@drawable/ic_calendar_24"
+            app:tint="@color/colorTextTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewShowTitle"
+            app:layout_constraintStart_toStartOf="@+id/textViewShowTitle"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewShowDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorTextMessage"
+            tools:text="Qua, 27 de Dezembro de 2023"
+            app:layout_constraintTop_toTopOf="@+id/imageViewShowDate"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewShowDate"
+            app:layout_constraintStart_toEndOf="@+id/imageViewShowDate"/>
+
+        <ImageView
+            android:id="@+id/imageViewCalendarHour"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_time_24"
+            app:tint="@color/colorTextTitle"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewShowDate"
+            app:layout_constraintStart_toStartOf="@+id/textViewShowTitle"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewShowHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorTextMessage"
+            tools:text="Abertura: 16:00 • Início: 16:00"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCalendarHour"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewCalendarHour"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendarHour"/>
+
+        <ImageView
+            android:id="@+id/imageViewCalendarLocale"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_location_24"
+            app:tint="@color/colorTextTitle"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCalendarHour"
+            app:layout_constraintStart_toStartOf="@+id/textViewShowTitle"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewShowLocale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorTextMessage"
+            tools:text="Amaité Praia • Joinville, SC"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCalendarLocale"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewCalendarLocale"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCalendarLocale"/>
+
+        <ImageView
+            android:id="@+id/imageViewShowValue"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_money_24"
+            app:tint="@color/colorTextTitle"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewCalendarLocale"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCalendarLocale"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewShowValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorTextMessage"
+            tools:text="R$180,00"
+            app:layout_constraintTop_toTopOf="@+id/imageViewShowValue"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewShowValue"
+            app:layout_constraintStart_toEndOf="@+id/imageViewShowValue"/>
+
+        <TextView
+            android:id="@+id/textViewShowDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextMessage"
+            tools:text="Transporte-se para uma era de paz, amor e estilo com a festa Lovely Daisy! Inspirada na icônica margarida dos anos 70, esta celebração promete trazer toda a essência da contracultura e da estética da época. Vista suas melhores roupas vintage, deixe seu espírito livre florescer e junte-se a nós para uma noite cheia de cores, música contagiante e vibrações positivas. A Lovely Daisy trará de volta a simplicidade, a pureza e a alegria da margarida, símbolo inconfundível da era dourada dos anos 70. Não perca essa oportunidade de reviver a magia da época e criar memórias inesquecíveis em uma festa cheia de encanto e nostalgia!"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewShowValue"
+            app:layout_constraintStart_toStartOf="@+id/textViewShowTitle"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/up_shadow"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutBuy" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBuy"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewMinus"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:srcCompat="@drawable/ic_minus_24"
+            app:tint="@color/colorTextBuy"
+            android:layout_marginStart="@dimen/margin_default_material"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textViewNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_material"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:textColor="@color/colorTextTitle"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            tools:text="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMinus"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imageViewMore"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/margin_default_material"
+            app:srcCompat="@drawable/ic_plus_24"
+            app:tint="@color/colorTextBuy"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewNumber"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_rounded_colored"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="@dimen/margin_default_material"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewMore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_material"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextMessageLight"
+                android:text="@string/add"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/textViewTotalValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default_material"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextMessageLight"
+                tools:text="R$180,00"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

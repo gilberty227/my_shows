@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    android:paddingTop="1dp">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -19,7 +20,7 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <fragment
-        android:id="@+id/nav_host_fragment_activity_main"
+        android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,5 +30,101 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutCart"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/margin_default_material"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayoutButtonCart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayoutButtonCart">
+
+            <TextView
+                android:id="@+id/textViewPriceTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="14sp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/colorTextMessage"
+                tools:text="Total (2 itens)"
+                app:layout_constraintBottom_toTopOf="@+id/textViewPrice"
+                app:layout_constraintStart_toStartOf="@+id/textViewPrice"/>
+
+            <TextView
+                android:id="@+id/textViewPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextTitleLight"
+                tools:text="R$1540,00"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutButtonCart"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_rounded_colored"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="@dimen/margin_default_material"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_cart"
+                android:textColor="@color/colorTextMessageLight"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewShadowCart"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/up_shadow"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutCart" />
+
+    <View
+        android:id="@+id/viewShadowNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/up_shadow"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="viewShadowNavigation, nav_view" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="viewShadowCart, constraintLayoutCart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

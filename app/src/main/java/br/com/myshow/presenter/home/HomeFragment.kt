@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import br.com.myshow.databinding.FragmentHomeBinding
+import br.com.myshow.presenter.home.adapter.ShowAdapter
 import br.com.myshow.presenter.model.ShowDto
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +39,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setShowAdapter(showList: MutableList<ShowDto>) {
-        var oi = showList
+        binding.recyclerViewShows.adapter = ShowAdapter(showList){
+            val action = HomeFragmentDirections.actionNavigationHomeToNavigationShowDetails(it.title.orEmpty(), it)
+            findNavController().navigate(action)
+        }
     }
 }

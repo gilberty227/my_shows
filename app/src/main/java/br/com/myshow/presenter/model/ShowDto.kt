@@ -1,8 +1,11 @@
 package br.com.myshow.presenter.model
 
+import android.os.Parcelable
 import br.com.myshow.domain.model.Show
+import kotlinx.parcelize.Parcelize
 
-class ShowDto(
+@Parcelize
+data class ShowDto(
     var id: Int?,
     var title: String?,
     var desc: String?,
@@ -10,8 +13,9 @@ class ShowDto(
     var price: Int?,
     var day: String?,
     var hour: String?,
-    var location: String?
-)
+    var location: String?,
+    var locationQuick: String?
+) : Parcelable
 
 fun Show.toShowDto() = ShowDto(
     id = this.id,
@@ -21,5 +25,6 @@ fun Show.toShowDto() = ShowDto(
     price = this.price,
     day = this.day,
     hour = this.hour,
-    location = this.location
+    location = this.location,
+    locationQuick = this.locationQuick
 )

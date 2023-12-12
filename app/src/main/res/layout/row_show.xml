@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginTop="30dp"
+    android:background="@color/contentBackgroundColor"
+    app:cardBackgroundColor="@color/backgroundItem"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageViewShow"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:scaleType="fitXY"
+            tools:srcCompat="@drawable/show_example"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_material"
+            android:layout_marginEnd="@dimen/margin_default_material"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewShow"
+            app:layout_constraintStart_toStartOf="@+id/imageViewShow"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/textViewShowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextTitleLight"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                tools:text="Paradise Sunset by Corona"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/textViewShowLocale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:maxLines="1"
+                android:textSize="14sp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/colorTextMessage"
+                android:ellipsize="end"
+                tools:text="Florianópolis/SC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewShowTitle"
+                app:layout_constraintStart_toStartOf="@+id/textViewShowTitle"/>
+
+            <TextView
+                android:id="@+id/textViewShowDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:maxLines="1"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextMessage"
+                android:ellipsize="end"
+                tools:text="Qua, 27 de Dezembro"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewShowLocale"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
