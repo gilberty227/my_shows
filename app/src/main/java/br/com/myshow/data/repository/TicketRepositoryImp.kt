@@ -55,5 +55,6 @@ interface TicketRepository {
     suspend fun getAllTicketCart(): List<Ticket>
 
     fun observableDB(): LiveData<Boolean>
+
     fun updateCart()
 }

@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(private var showsUseCase: ShowUseCase,
         }
     }
 
-    private fun getCart(){
+    fun getCart(){
         viewModelScope.launch(Dispatchers.Main) {
             val listTicket = cartUseCase.getAllTicketCart().toMutableList()
             _updateShowCart.value = listTicket.isNotEmpty()
@@ -43,6 +43,8 @@ class MainViewModel @Inject constructor(private var showsUseCase: ShowUseCase,
                 listTicket.forEach { listIdShow.add((it.idShow?:0)) }
                 val listShow = showsUseCase.getShowsDatabase(listIdShow).toMutableList()
                 _updateCart.postValue(calculateCart(listTicket, listShow))
+            } else {
+                _updateCart.postValue(CartUi(0, "0"))
             }
         }
     }

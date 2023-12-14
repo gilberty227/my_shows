@@ -57,6 +57,10 @@ class ShowDetailsFragment : Fragment() {
             Toast.makeText(context, getString(it), Toast.LENGTH_LONG).show()
         }
 
+        viewModel.close.observe(viewLifecycleOwner){
+           findNavController().popBackStack()
+        }
+
         viewModel.updateStatusButton.observe(viewLifecycleOwner){
             binding.imageViewMinus.isEnabled = it.first
             binding.imageViewMinus.drawable.setTint(ContextCompat.getColor(requireContext(),
@@ -85,7 +89,6 @@ class ShowDetailsFragment : Fragment() {
         }
         binding.constraintLayoutBuy.setOnClickListener {
             viewModel.saveTicket(binding.textViewNumber.text.toString().toInt())
-            findNavController().popBackStack()
         }
     }
 

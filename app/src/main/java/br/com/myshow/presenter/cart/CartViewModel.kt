@@ -17,7 +17,9 @@ import br.com.myshow.presenter.model.toOrder
 import br.com.myshow.presenter.model.toTicket
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,7 +52,6 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
             if(updateAll) {
                 _tickets.value = listTicketUi
             }
-            updateCartMain() //Main
         }
     }
 
@@ -65,9 +66,7 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
     }
 
     fun updateCartMain(){
-        viewModelScope.launch(Dispatchers.Main) {
-            cartUseCase.updateCart()
-        }
+        cartUseCase.updateCart()
     }
 
     fun removeTicket(ticketUi: TicketUi){
@@ -88,6 +87,7 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
 
     fun finishOrder(listTicket: MutableList<TicketUi>, listener: () -> Unit) {
         viewModelScope.launch {
+            cartUseCase.clearCart()
             val cart = _updateCart.value
             val showTicket : MutableMap<Int, String> = mutableMapOf()
             listTicket.forEach {
@@ -102,8 +102,7 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
             )
 
             orderUseCase.insertOrder(order.toOrder())
-            cartUseCase.clearCart()
-            listener()
         }
+        updateCartMain()
     }
 }

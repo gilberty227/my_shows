@@ -12,6 +12,10 @@ import br.com.myshow.domain.repository.ShowUseCase
 import br.com.myshow.presenter.model.ShowUi
 import br.com.myshow.presenter.model.toShow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +26,9 @@ class ShowDetailsViewModel @Inject constructor(private val cartUseCase: CartUseC
 
     private val _show = MutableLiveData<ShowUi>()
     val show = _show as LiveData<ShowUi>
+
+    private val _close = MutableLiveData<Boolean>()
+    val close = _close as LiveData<Boolean>
 
     private val _updatePrice = MutableLiveData<Int>()
     val updatePrice = _updatePrice as LiveData<Int>
@@ -58,9 +65,15 @@ class ShowDetailsViewModel @Inject constructor(private val cartUseCase: CartUseC
     }
 
     fun saveTicket(countTicket: Int) {
-        _show.value?.let { insertShow(it.toShow()) }
-        _show.value?.id?.let { insertTicket(it, countTicket) }
-        cartUseCase.updateCart()
+        CoroutineScope(Dispatchers.Main).async{
+            async {
+                _show.value?.let { insertShow(it.toShow()) }
+                _show.value?.id?.let { insertTicket(it, countTicket) }
+            }.await()
+            delay(600)
+            cartUseCase.updateCart()
+            _close.value = true
+        }
     }
 
     private fun insertTicket(idShow: Int, countTicket: Int){
