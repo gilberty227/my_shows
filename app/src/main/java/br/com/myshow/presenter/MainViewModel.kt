@@ -12,6 +12,8 @@ import br.com.myshow.domain.utils.getMoney
 import br.com.myshow.presenter.model.CartUi
 import br.com.myshow.presenter.model.ShowUi
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,7 +35,7 @@ class MainViewModel @Inject constructor(private var showsUseCase: ShowUseCase,
     }
 
     private fun getCart(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             val listTicket = cartUseCase.getAllTicketCart().toMutableList()
             _updateShowCart.value = listTicket.isNotEmpty()
             if(listTicket.isNotEmpty()){

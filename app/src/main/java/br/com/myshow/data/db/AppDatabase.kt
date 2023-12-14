@@ -20,9 +20,9 @@ abstract class AppDatabase: RoomDatabase() {
     abstract val ticketDao: TicketDao
 
     companion object {
+        const val ORDER_NAME_TABLE = "order"
         const val DATABASE_NAME = "my_show_db"
         const val SHOW_NAME_TABLE = "show"
         const val TICKET_NAME_TABLE = "ticket"
-        const val ORDER_NAME_TABLE = "order"
     }
 }

@@ -5,11 +5,17 @@
         <item quantity="other">Total %d ingressos</item>
     </plurals>
 
+    <plurals name="cart_ticket">
+        <item quantity="one">(%d ingresso)</item>
+        <item quantity="other">(%d ingressos)</item>
+    </plurals>
+
     <string name="app_name">My Show</string>
     <string name="title_home">Home</string>
     <string name="title_cart">Carrinho</string>
     <string name="title_repositories">Repositórios</string>
     <string name="title_orders">Pedidos</string>
+    <string name="title_order">Pedido</string>
     <string name="title_notifications">Notifications</string>
     <string name="user_followers_following">%1$s followers · %2$s following</string>
     <string name="home_search">Pesquisar</string>
@@ -17,8 +23,9 @@
     <string name="see_cart">Ver carrinho</string>
     <string name="finish">Finalizar</string>
     <string name="max_items">No máximo 8 ingressos deste show por pessoa</string>
+    <string name="order_finish">Pedido realizado com sucesso</string>
     <string name="show_details_buy">Compra</string>
-    <string name="empty">Xiii, sem nenhuma informação</string>
+    <string name="empty">Nenhum pedido encontrado</string>
 
 
     <!-- Message error -->

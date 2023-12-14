@@ -66,11 +66,17 @@ class MainActivity : AppCompatActivity() {
             idFragment = destination.id
             if (destination.id == R.id.navigation_home) {
                 binding.groupNavigation.visibility = View.VISIBLE
-                binding.groupCart.visibility = View.VISIBLE
+                if(((viewModel.updateCart.value?.totalTicket?:0) > 0)) {
+                    binding.groupCart.visibility = View.VISIBLE
+                }
             } else {
                 binding.groupNavigation.visibility = View.GONE
                 binding.groupCart.visibility = View.GONE
             }
+            if (destination.id == R.id.navigation_orders){
+                binding.groupNavigation.visibility = View.VISIBLE
+            }
+
         }
     }
 

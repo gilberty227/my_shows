@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="br.com.myshow.presenter.orders.OrdersFragment"
+        android:name="br.com.myshow.presenter.orders.OrderFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_orders" />
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presenter.orders.OrdersFragment">
+    tools:context=".presenter.orders.OrderFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewTicket"
@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutButtonCart"
+            android:id="@+id/constraintLayoutButtonFinish"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:background="@drawable/button_rounded_colored"
@@ -97,6 +97,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/viewShadowCart"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/up_shadow"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutCart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

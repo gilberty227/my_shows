@@ -3,25 +3,27 @@ package br.com.myshow.presenter.cart
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import br.com.myshow.domain.model.Show
 import br.com.myshow.domain.model.Ticket
 import br.com.myshow.domain.repository.CartUseCase
+import br.com.myshow.domain.repository.OrderUseCase
 import br.com.myshow.domain.repository.ShowUseCase
 import br.com.myshow.domain.utils.getMoney
 import br.com.myshow.presenter.model.CartUi
-import br.com.myshow.presenter.model.ShowUi
+import br.com.myshow.presenter.model.OrderUi
 import br.com.myshow.presenter.model.TicketUi
-import br.com.myshow.presenter.model.toShowDto
+import br.com.myshow.presenter.model.toOrder
 import br.com.myshow.presenter.model.toTicket
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
-                                        private val showUseCase: ShowUseCase) : ViewModel() {
+                                        private val showUseCase: ShowUseCase,
+                                        private val orderUseCase: OrderUseCase) : ViewModel() {
 
     private val _tickets = MutableLiveData<List<TicketUi>>()
     val tickets = _tickets as LiveData<List<TicketUi>>
@@ -62,8 +64,10 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
         return CartUi(totalTicket, totalPrice.getMoney())
     }
 
-    private fun updateCartMain(){
-        cartUseCase.updateCart()
+    fun updateCartMain(){
+        viewModelScope.launch(Dispatchers.Main) {
+            cartUseCase.updateCart()
+        }
     }
 
     fun removeTicket(ticketUi: TicketUi){
@@ -79,6 +83,27 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
             cartUseCase.updateTicketCart(ticketUi.toTicket())
             getTicket(false)
             updateCartMain()
+        }
+    }
+
+    fun finishOrder(listTicket: MutableList<TicketUi>, listener: () -> Unit) {
+        viewModelScope.launch {
+            val cart = _updateCart.value
+            val showTicket : MutableMap<Int, String> = mutableMapOf()
+            listTicket.forEach {
+                showTicket.put(it.idShow?:0, it.countTicket.toString())
+            }
+
+            val order = OrderUi(
+                showTicket = showTicket,
+                totalPrice = cart?.totalPrice,
+                countTickets = cart?.totalTicket,
+                dateBuy = System.currentTimeMillis()
+            )
+
+            orderUseCase.insertOrder(order.toOrder())
+            cartUseCase.clearCart()
+            listener()
         }
     }
 }

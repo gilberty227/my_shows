@@ -12,7 +12,7 @@ import br.com.myshow.presenter.model.TicketUi
 class TicketItemViewHolder(private val binding: RowTicketBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun setData(ticket: TicketUi, listener: TicketListener, clickFinish: (ticket: TicketUi) -> Unit) {
+    fun setData(ticket: TicketUi, listener: TicketListener) {
 
         binding.imageViewShow.loadImage(ticket.show?.imageUrl.orEmpty())
         binding.textViewShowTitle.text = ticket.show?.title
@@ -46,10 +46,6 @@ class TicketItemViewHolder(private val binding: RowTicketBinding) :
                 binding.textViewNumber.text = countTicket.toString()
                 listener.updateCart(ticket)
             }
-        }
-
-        itemView.setOnClickListener {
-            clickFinish(ticket)
         }
     }
 

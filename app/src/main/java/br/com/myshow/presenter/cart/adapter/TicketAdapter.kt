@@ -8,9 +8,8 @@ import br.com.myshow.domain.model.Ticket
 import br.com.myshow.presenter.model.TicketUi
 
 class TicketAdapter(
-    private var listTicket: MutableList<TicketUi>,
-    private var listener: TicketListener,
-    private var clickFinish: (ticket: TicketUi) -> Unit)
+    var listTicket: MutableList<TicketUi>,
+    private var listener: TicketListener)
     : RecyclerView.Adapter<TicketItemViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -32,7 +31,7 @@ class TicketAdapter(
     }
 
     override fun onBindViewHolder(holder: TicketItemViewHolder, position: Int) {
-        holder.setData(listTicket[holder.adapterPosition], listener, clickFinish)
+        holder.setData(listTicket[holder.adapterPosition], listener)
     }
 
     fun removeItem(position: Int) {
