@@ -16,6 +16,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_cart"
+        android:name="br.com.myshow.presenter.cart.CartFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_cart" >
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_show_details"
         android:name="br.com.myshow.presenter.showdetails.ShowDetailsFragment"
         android:label="{title}"

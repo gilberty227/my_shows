@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
+    private var idFragment: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,19 +52,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.updateShowCart.observe(this){
-            binding.groupCart.visibility = if(it) View.VISIBLE else View.GONE
+            binding.groupCart.visibility = if(it && R.id.navigation_home == idFragment) View.VISIBLE else View.GONE
+        }
+
+        binding.constraintLayoutButtonCart.setOnClickListener {
+            findNavController(R.id.fragmentContainerView).navigate(R.id.navigation_cart)
         }
     }
 
     private fun setSettingsButtonNavigation(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             TransitionManager.beginDelayedTransition(binding.navView, Fade())
-            if (destination.id == R.id.navigation_show_details) {
-                binding.groupNavigation.visibility = View.GONE
-                binding.groupCart.visibility = View.GONE
-            } else {
+            idFragment = destination.id
+            if (destination.id == R.id.navigation_home) {
                 binding.groupNavigation.visibility = View.VISIBLE
                 binding.groupCart.visibility = View.VISIBLE
+            } else {
+                binding.groupNavigation.visibility = View.GONE
+                binding.groupCart.visibility = View.GONE
             }
         }
     }

@@ -27,18 +27,12 @@ class MainViewModel @Inject constructor(private var showsUseCase: ShowUseCase,
 
     init {
         getCart()
-        viewModelScope.launch {
-            cartUseCase.observableDB().observeForever {
-                getCart()
-            }
+        cartUseCase.observableDB().observeForever {
+            getCart()
         }
     }
 
-    fun testeGil(): LiveData<Boolean> {
-        return cartUseCase.observableDB()
-    }
-
-    fun getCart(){
+    private fun getCart(){
         viewModelScope.launch {
             val listTicket = cartUseCase.getAllTicketCart().toMutableList()
             _updateShowCart.value = listTicket.isNotEmpty()
@@ -46,7 +40,7 @@ class MainViewModel @Inject constructor(private var showsUseCase: ShowUseCase,
                 val listIdShow = mutableListOf<Int>()
                 listTicket.forEach { listIdShow.add((it.idShow?:0)) }
                 val listShow = showsUseCase.getShowsDatabase(listIdShow).toMutableList()
-                _updateCart.value = calculateCart(listTicket, listShow)
+                _updateCart.postValue(calculateCart(listTicket, listShow))
             }
         }
     }

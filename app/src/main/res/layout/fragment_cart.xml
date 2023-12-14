@@ -7,16 +7,17 @@
     tools:context=".presenter.orders.OrdersFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewShows"
+        android:id="@+id/recyclerViewTicket"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="40dp"
         android:orientation="vertical"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/row_order"/>
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutCart"
+        tools:listitem="@layout/row_ticket"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutCart"
@@ -47,25 +48,25 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/textViewPriceTotal"
+                android:id="@+id/textViewCountTicket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="14sp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/colorTextMessage"
-                android:text="Total (2 itens)"
-                app:layout_constraintBottom_toTopOf="@+id/textViewPrice"
-                app:layout_constraintStart_toStartOf="@+id/textViewPrice"/>
+                tools:text="Total (2 itens)"
+                app:layout_constraintBottom_toTopOf="@+id/textViewPriceTotal"
+                app:layout_constraintStart_toStartOf="@+id/textViewPriceTotal"/>
 
             <TextView
-                android:id="@+id/textViewPrice"
+                android:id="@+id/textViewPriceTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:textSize="16sp"
                 android:textColor="@color/colorTextTitleLight"
-                android:text="R$1540,00"
+                tools:text="R$1540,00"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>

@@ -7,6 +7,7 @@
 
     <string name="app_name">My Show</string>
     <string name="title_home">Home</string>
+    <string name="title_cart">Carrinho</string>
     <string name="title_repositories">Repositórios</string>
     <string name="title_orders">Pedidos</string>
     <string name="title_notifications">Notifications</string>
