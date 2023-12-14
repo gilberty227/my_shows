@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import br.com.myshow.databinding.FragmentOrdersBinding
+import br.com.myshow.presenter.home.HomeFragmentDirections
 import br.com.myshow.presenter.model.OrderUi
 import br.com.myshow.presenter.orders.adapter.OrderAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,7 +59,8 @@ class OrderFragment : Fragment() {
     private fun setTicketsAdapter(orderList: MutableList<OrderUi>) {
         if((binding.recyclerViewOrder.adapter?.itemCount?:0) <= 0) {
             OrderAdapter(orderList){
-
+                val action = OrderFragmentDirections.actionNavigationOrderToNavigationOrderDetails(it)
+                findNavController().navigate(action)
             }.also { binding.recyclerViewOrder.adapter = it }
         }
     }

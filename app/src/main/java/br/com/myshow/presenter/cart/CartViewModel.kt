@@ -89,9 +89,9 @@ class CartViewModel @Inject constructor(private val cartUseCase: CartUseCase,
         viewModelScope.launch {
             cartUseCase.clearCart()
             val cart = _updateCart.value
-            val showTicket : MutableMap<Int, String> = mutableMapOf()
+            val showTicket : MutableMap<Int, Int> = mutableMapOf()
             listTicket.forEach {
-                showTicket.put(it.idShow?:0, it.countTicket.toString())
+                showTicket.put(it.idShow?:0, it.countTicket?:0)
             }
 
             val order = OrderUi(

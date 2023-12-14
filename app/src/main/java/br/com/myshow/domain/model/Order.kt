@@ -14,13 +14,14 @@ data class Order(
 )
 
 fun Order.toOrderUi(): OrderUi {
-    val showAndTicket: MutableMap<Int, String> = mutableMapOf()
+    val showAndTicket: MutableMap<Int, Int> = mutableMapOf()
     val listResult = this.showTicket?.split("#")
     listResult?.forEach {
         val result = it.split("&")
         val showId = if(result.first().isEmpty()) "0" else result.first()
+        val countTicket = if(result.last().isEmpty()) "0" else result.last()
 
-        showAndTicket[showId.toInt()] = result.last()
+        showAndTicket[showId.toInt()] = countTicket.toInt()
     }
 
     return OrderUi(

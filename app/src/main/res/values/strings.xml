@@ -22,6 +22,7 @@
     <string name="add">Adicionar</string>
     <string name="see_cart">Ver carrinho</string>
     <string name="finish">Finalizar</string>
+    <string name="back">Voltar</string>
     <string name="max_items">No máximo 8 ingressos deste show por pessoa</string>
     <string name="order_finish">Pedido realizado com sucesso</string>
     <string name="show_details_buy">Compra</string>

@@ -39,6 +39,23 @@
         android:id="@+id/navigation_orders"
         android:name="br.com.myshow.presenter.orders.OrderFragment"
         android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+
+        <action
+            android:id="@+id/action_navigation_order_to_navigation_order_details"
+            app:destination="@id/navigation_order_details"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_order_details"
+        android:name="br.com.myshow.presenter.orders.details.OrderDetailsFragment"
+        android:label="@string/title_order"
+        tools:layout="@layout/fragment_order_details" >
+        <argument
+            android:name="order"
+            app:argType="br.com.myshow.presenter.model.OrderUi"/>
+    </fragment>
+
 
 </navigation>

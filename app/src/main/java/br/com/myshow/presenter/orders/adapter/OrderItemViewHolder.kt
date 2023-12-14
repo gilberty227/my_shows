@@ -16,5 +16,9 @@ class OrderItemViewHolder(private val binding: RowOrderBinding) :
                 order.countTickets?:0, order.countTickets?:0)
         binding.textViewPrice.text = order.totalPrice
         binding.textViewDateOrder.text = (order.dateBuy?.toLong())?.convertMilliSecondsToDate()
+
+        itemView.setOnClickListener {
+            listener(order)
+        }
     }
 }
