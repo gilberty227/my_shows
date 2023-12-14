@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/contentBackgroundColor"
-    tools:context=".presenter.home.HomeFragment">
+    tools:context=".presenter.showdetails.ShowDetailsFragment">
 
     <ImageView
         android:id="@+id/imageViewBackgroundShow"

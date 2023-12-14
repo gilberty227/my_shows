@@ -2,6 +2,7 @@ package br.com.myshow.presenter
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+            setOf(R.id.navigation_home, R.id.navigation_orders)
         )
         setupActionBarWithNavController(
             navController = navController,
@@ -42,6 +44,15 @@ class MainActivity : AppCompatActivity() {
         )
         binding.navView.setupWithNavController(navController)
         setSettingsButtonNavigation(navController)
+
+        viewModel.updateCart.observe(this){
+            binding.textViewPrice.text = it.totalPrice
+            binding.textViewCount.text = resources.getQuantityString(R.plurals.cart_total_ticket, it.totalTicket, it.totalTicket)
+        }
+
+        viewModel.updateShowCart.observe(this){
+            binding.groupCart.visibility = if(it) View.VISIBLE else View.GONE
+        }
     }
 
     private fun setSettingsButtonNavigation(navController: NavController) {

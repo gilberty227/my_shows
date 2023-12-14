@@ -2,13 +2,13 @@ package br.com.myshow.presenter.home.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import br.com.myshow.databinding.RowShowBinding
-import br.com.myshow.presenter.model.ShowDto
+import br.com.myshow.presenter.model.ShowUi
 import br.com.myshow.domain.utils.loadImage
 
 class ShowItemViewHolder(private val binding: RowShowBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun setData(show: ShowDto, listener: (show: ShowDto) -> Unit) {
+    fun setData(show: ShowUi, listener: (show: ShowUi) -> Unit) {
 
         binding.imageViewShow.loadImage(show.imageUrl.orEmpty())
         binding.textViewShowTitle.text = show.title

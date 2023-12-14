@@ -25,18 +25,13 @@
             app:argType="string" />
         <argument
             android:name="show"
-            app:argType="br.com.myshow.presenter.model.ShowDto" />
+            app:argType="br.com.myshow.presenter.model.ShowUi" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="br.com.myshow.presenter.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_orders"
+        android:name="br.com.myshow.presenter.orders.OrdersFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_orders" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="br.com.myshow.presenter.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

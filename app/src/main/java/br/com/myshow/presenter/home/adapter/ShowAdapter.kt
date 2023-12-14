@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.myshow.databinding.RowShowBinding
-import br.com.myshow.presenter.model.ShowDto
+import br.com.myshow.presenter.model.ShowUi
 
 class ShowAdapter(
-    private var listShow: MutableList<ShowDto>,
-    private var listener: (show: ShowDto) -> Unit)
+    private var listShow: MutableList<ShowUi>,
+    private var listener: (show: ShowUi) -> Unit)
     : RecyclerView.Adapter<ShowItemViewHolder>() {
 
     override fun getItemCount(): Int {

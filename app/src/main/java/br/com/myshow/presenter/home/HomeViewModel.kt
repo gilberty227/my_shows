@@ -6,20 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import br.com.myshow.domain.model.Show
-import br.com.myshow.domain.repository.GetShowsUseCase
-import br.com.myshow.presenter.model.ShowDto
+import br.com.myshow.domain.repository.ShowUseCase
+import br.com.myshow.presenter.model.ShowUi
 import br.com.myshow.presenter.model.toShowDto
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val showsUseCase: GetShowsUseCase) : ViewModel() {
+class HomeViewModel @Inject constructor(private val showsUseCase: ShowUseCase) : ViewModel() {
 
     private val _shows = MutableLiveData<List<Show>>()
     val shows = _shows as LiveData<List<Show>>
 
-    val showsDtoList: LiveData<List<ShowDto>> = shows.map {
+    val showsDtoList: LiveData<List<ShowUi>> = shows.map {
         it.map {  show ->
             show.toShowDto()
         }
@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(private val showsUseCase: GetShowsUseCas
 
     fun getShows(){
         viewModelScope.launch {
-            val showList = showsUseCase()
+            val showList = showsUseCase.getShowsServer()
             _shows.value = showList?: listOf()
         }
     }

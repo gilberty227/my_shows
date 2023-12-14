@@ -8,12 +8,13 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import br.com.myshow.R
 import br.com.myshow.databinding.FragmentShowDetailsBinding
 import br.com.myshow.domain.utils.getMoney
 import br.com.myshow.domain.utils.loadImage
 import br.com.myshow.domain.utils.loadImageBlur
-import br.com.myshow.presenter.model.ShowDto
+import br.com.myshow.presenter.model.ShowUi
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +36,7 @@ class ShowDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val show = arguments?.getParcelable("show") as ShowDto?
+        val show = arguments?.getParcelable("show") as ShowUi?
         show?.let {
             viewModel.setShow(show)
         }
@@ -82,10 +83,13 @@ class ShowDetailsFragment : Fragment() {
             viewModel.changeNumberItem(numberTicket + 1)
             binding.textViewNumber.text = (numberTicket + 1).toString()
         }
-        binding.constraintLayoutBuy.setOnClickListener {  }
+        binding.constraintLayoutBuy.setOnClickListener {
+            viewModel.saveTicket(binding.textViewNumber.text.toString().toInt())
+            findNavController().popBackStack()
+        }
     }
 
-    private fun setShow(show: ShowDto){
+    private fun setShow(show: ShowUi){
         binding.imageViewShow.loadImage(show.imageUrl.orEmpty())
         binding.imageViewBackgroundShow.loadImageBlur(show.imageUrl.orEmpty())
         binding.textViewShowTitle.text = show.title

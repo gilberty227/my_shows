@@ -3,16 +3,25 @@ package br.com.myshow.presenter.showdetails
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.myshow.R
-import br.com.myshow.presenter.model.ShowDto
+import br.com.myshow.domain.model.Show
+import br.com.myshow.domain.model.Ticket
+import br.com.myshow.domain.repository.CartUseCase
+import br.com.myshow.domain.repository.ShowUseCase
+import br.com.myshow.presenter.model.ShowUi
+import br.com.myshow.presenter.model.toShow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ShowDetailsViewModel @Inject constructor() : ViewModel() {
+class ShowDetailsViewModel @Inject constructor(private val cartUseCase: CartUseCase,
+                                               private val showUseCase: ShowUseCase) : ViewModel() {
 
-    private val _show = MutableLiveData<ShowDto>()
-    val show = _show as LiveData<ShowDto>
+
+    private val _show = MutableLiveData<ShowUi>()
+    val show = _show as LiveData<ShowUi>
 
     private val _updatePrice = MutableLiveData<Int>()
     val updatePrice = _updatePrice as LiveData<Int>
@@ -25,7 +34,7 @@ class ShowDetailsViewModel @Inject constructor() : ViewModel() {
 
     private var countTicket = 1
 
-    fun setShow(show: ShowDto){
+    fun setShow(show: ShowUi){
         _show.value = show
         updateButtons(countTicket)
     }
@@ -45,6 +54,24 @@ class ShowDetailsViewModel @Inject constructor() : ViewModel() {
             _message.value = R.string.max_items
         } else {
             _updateStatusButton.value = Pair(true, true)
+        }
+    }
+
+    fun saveTicket(countTicket: Int) {
+        _show.value?.let { insertShow(it.toShow()) }
+        _show.value?.id?.let { insertTicket(it, countTicket) }
+        cartUseCase.updateCart()
+    }
+
+    private fun insertTicket(idShow: Int, countTicket: Int){
+        viewModelScope.launch {
+            cartUseCase.insertTicketCart(Ticket(idShow, countTicket))
+        }
+    }
+
+    private fun insertShow(show: Show) {
+        viewModelScope.launch {
+            showUseCase.insertShow(show)
         }
     }
 

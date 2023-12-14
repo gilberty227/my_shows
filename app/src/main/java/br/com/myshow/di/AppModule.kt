@@ -1,10 +1,17 @@
 package br.com.myshow.di
 
+import android.app.Application
+import androidx.room.Room
+import br.com.myshow.data.db.AppDatabase
 import br.com.myshow.data.api.ApiMyShow
 import br.com.myshow.data.repository.ShowRepository
 import br.com.myshow.data.repository.ShowRepositoryImp
+import br.com.myshow.data.repository.TicketRepository
+import br.com.myshow.data.repository.TicketRepositoryImp
+import br.com.myshow.domain.repository.CartUseCase
 import br.com.myshow.domain.repository.GetShows
-import br.com.myshow.domain.repository.GetShowsUseCase
+import br.com.myshow.domain.repository.ShowUseCase
+import br.com.myshow.domain.repository.GetTicketCart
 import br.com.myshow.domain.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -38,20 +45,34 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideShowRepository(service: ApiMyShow): ShowRepository {
-        return ShowRepositoryImp(service)
+    fun provideShowRepository(service: ApiMyShow, appDatabase: AppDatabase): ShowRepository {
+        return ShowRepositoryImp(service, appDatabase)
     }
 
     @Provides
     @Singleton
-    fun provideGetShowUseCase(showRepository: ShowRepository): GetShowsUseCase {
+    fun provideShowUseCase(showRepository: ShowRepository): ShowUseCase {
         return GetShows(showRepository)
     }
 
-    /*@Provides
+    @Provides
     @Singleton
-    fun provideCheckInternet(application: Application): ConnectivityInterceptor {
-        return ConnectivityInterceptor(application)
-    }*/
+    fun provideAppDatabase(app: Application): AppDatabase {
+        return Room.databaseBuilder(app, AppDatabase::class.java, AppDatabase.DATABASE_NAME).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTicketRepository(appDatabase: AppDatabase): TicketRepository {
+        return TicketRepositoryImp(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCartUseCase(ticketRepository: TicketRepository): CartUseCase {
+        return GetTicketCart(ticketRepository)
+    }
+
+
 
 }

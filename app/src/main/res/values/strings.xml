@@ -1,18 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="cart_total_ticket">
+        <item quantity="one">Total %d ingresso</item>
+        <item quantity="other">Total %d ingressos</item>
+    </plurals>
+
     <string name="app_name">My Show</string>
     <string name="title_home">Home</string>
     <string name="title_repositories">Repositórios</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_orders">Pedidos</string>
     <string name="title_notifications">Notifications</string>
     <string name="user_followers_following">%1$s followers · %2$s following</string>
     <string name="home_search">Pesquisar</string>
     <string name="add">Adicionar</string>
     <string name="see_cart">Ver carrinho</string>
+    <string name="finish">Finalizar</string>
     <string name="max_items">No máximo 8 ingressos deste show por pessoa</string>
     <string name="show_details_buy">Compra</string>
     <string name="empty">Xiii, sem nenhuma informação</string>
 
+
     <!-- Message error -->
     <string name="message_error_no_internet">Você não está conectado a internet.\nPara usar este aplicatiov é necessário\nestar conectado alguma rede wi-fi.</string>
     <string name="message_error_no_internet_button">Recarregar</string>
+
+
 </resources>
